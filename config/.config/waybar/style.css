@@ -1,0 +1,146 @@
+@import "nord.css";
+
+* {
+  border: 0;
+  border-radius: 0;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 14px;
+  min-height: 0px;
+}
+
+
+#waybar {
+  background: transparent;
+}
+
+window#waybar.empty #window {
+    background: transparent;
+    color: transparent;
+    padding: 0;
+    margin: 0;
+    transition: .5s;
+    border: none;
+}
+
+mpris.empty {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+#workspaces {
+    background: @nord1;
+    padding: 0px;
+    margin: 0px 0px;
+    border-radius: 4px;
+}
+
+
+#workspaces button {
+    all: initial;
+    padding: 0px 12px;
+    margin: 0px 0px;
+    color: @nord7;
+    background: transparent;
+    opacity: 1;
+}
+
+#workspaces button.focused {
+    padding: 0px 12px;
+    margin: 0px 0px;
+    background: @nord7;
+    color: @nord1;
+    opacity: 1; 
+}
+
+#workspaces button:first-child {
+    border-radius: 2px 0px 0px 2px;
+}
+
+#workspaces button:last-child {
+    border-radius: 0px 2px 2px 0px;
+}
+
+#workspaces button:first-child:last-child {
+    border-radius: 2px;
+}
+
+#temps,
+#privacy,
+#clickable,
+#custom-update,
+#mpris,
+#tray,
+#memory,
+#backlight,
+#clock,
+#cpu,
+#custom-gpu,
+#disk,
+#network,
+#bluetooth,
+#pulseaudio{
+  background-color: @nord1;
+  color: @nord5;
+  padding: 5px 12px;
+  margin: 0px 5px;
+  border-radius: 4px;
+}
+
+
+#temperature.critical {
+    color: @nord11;
+}
+
+#temperature.gpu.critical {
+    color: @nord11;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#clock,
+#battery {
+  background-color: @nord7;
+  color: @nord1;
+  min-width: 10px;
+  border-radius: 4px;
+  padding: 0 8px;
+  margin: 0px 5px;
+}
+
+#battery.warning {
+    background-color: @nord12;
+}
+
+#battery.critical {
+    background-color: @nord11;
+}
+
+#mpris,
+#window {
+  background-color: @nord7;
+  color: @nord1;
+  padding: 5px 12px;
+  margin: 0px 5px;
+  border-radius: 4px;
+}
+
+#network {
+  padding: 0 15px 0 10px;
+}
+
+#pulseaudio {
+  padding: 0 15px 0 10px;
+}
+
+tooltip {
+  border-radius: 5px;
+  background: @nord1;
+  border: 2px solid alpha(@nord8, .5);
+}
+
+

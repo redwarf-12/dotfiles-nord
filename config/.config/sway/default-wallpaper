@@ -1,0 +1,4 @@
+### Wallpaper
+#
+exec_always awww img ~/dotfiles-nord/wallpapers/hanged_man_tree.jpg --transition-type center
+#

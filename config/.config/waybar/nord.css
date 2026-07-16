@@ -1,0 +1,16 @@
+@define-color nord0     #2e3440; /* Sfondo scuro primario */
+@define-color nord1     #3b4252; /* Sfondo scuro secondario */
+@define-color nord2     #434c5e; /* Sfondo scuro terziario */
+@define-color nord3     #4c566a; /* Grigio scuro */
+@define-color nord4     #d8dee9; /* Bianco sporco */
+@define-color nord5     #e5e9f0; /* Ghiaccio chiaro */
+@define-color nord6     #eceff4; /* Bianco brillante */
+@define-color nord7     #8fbcbb; /* Verde acqua / Frost */
+@define-color nord8     #88c0d0; /* Turchese / Frost */
+@define-color nord9     #81a1c1; /* Blu pastello / Frost */
+@define-color nord10    #5e81ac; /* Blu scuro / Frost */
+@define-color nord11    #bf616a; /* Rosso / Aurora */
+@define-color nord12    #d08770; /* Arancione / Aurora */
+@define-color nord13    #ebcb8b; /* Giallo / Aurora */
+@define-color nord14    #a3be8c; /* Verde / Aurora */
+@define-color nord15    #b48ead; /* Viola / Aurora */

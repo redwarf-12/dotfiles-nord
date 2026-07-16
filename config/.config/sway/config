@@ -1,0 +1,231 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Your preferred terminal emulator
+set $term kitty
+# Your preferred application launcher
+set $menu rofi
+
+### Idle settings
+#
+# Numbers are in second
+#
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 360 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'playerctl pause; swaylock -f -c 000000'
+
+### Key bindings
+#
+# Basics:
+#
+# Start a terminal
+bindsym $mod+t exec $term
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Start your launcher
+bindsym $mod+a exec $menu -show drun
+
+# Start wlogout
+bindsym Control+Mod1+Delete exec systemctl poweroff
+bindsym Control+Mod1+r exec systemctl reboot
+bindsym Control+Mod1+s exec systemctl suspend
+bindsym Control+Mod1+h exec systemctl hibernate
+bindsym $mod+l exec swaylock -c 000000
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaymsg exit
+#
+# Applications
+#
+bindsym $mod+b exec brave
+bindsym $mod+e exec nautilus --new-window
+#
+# Moving around:
+#
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+#
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+# Toggle floating focus window
+bindsym $mod+w floating toggle
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through themr
+bindsym $mod+minus scratchpad show
+#
+# Utilities:
+#
+# Sink volume raise optionally with --device
+bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise
+# Sink volume lower optionally with --device
+bindsym XF86AudioLowerVolume exec swayosd-client --output-volume lower --device alsa_output.pci-0000_11_00.4.analog-stereo.monitor
+# Sink volume toggle mute
+bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
+# Source volume toggle mute
+bindsym XF86AudioMicMute exec swayosd-client --input-volume mute-toggle
+#
+# Capslock (If you don't want to use the backend)
+bindsym --release Caps_Lock exec swayosd-client --caps-lock
+#
+# Brightness raise (optionally with --device, can be device name or wildcard)
+bindsym XF86MonBrightnessUp exec swayosd-client --brightness raise --device intel_backlight
+# Brightness lower (optionally with --device, can be device name or wildcard)
+bindsym XF86MonBrightnessDown exec swayosd-client --brightness lower --device intel_backlight
+#
+# Play/Pause current player
+bindsym XF86AudioPlay exec swayosd-client --playerctl play-pause
+# Next song for current player
+bindsym XF86AudioNext exec swayosd-client --playerctl next
+#
+# Clipboard history
+bindsym $mod+v exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
+#
+# Copy screenshot
+bindsym Print exec sh -c 'grim -g "$(slurp)" - | wl-copy'
+bindsym $mod+Print exec grim -g "$(slurp)"
+#
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+#
+bar {
+    swaybar_command waybar
+}
+#
+### On start:
+    
+# On screen display
+exec swayosd-server
+
+# Wallpaper manager daemon
+exec_always awww-daemon
+
+# Notification manager
+exec_always dunst
+
+# Clipboard history (text + images)
+exec cliphist wipe
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+    
+# Network manager and bluetooth applet
+exec --no-startup-id nm-applet --indicator
+exec --no-startup-id blueman-applet
+
+# Better windows tiling
+exec autotiling
+    
+# Kwallet opening
+exec /usr/lib/pam_kwallet_init
+
+# Polkit agent
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+### Floating windows
+#
+#
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="blueman-manager"] floating enable, resize set width 800 px height 600 px
+# use "swaymsg -t get_tree" to get app_id
+#
+### Graphics
+#
+# Window spacing
+#
+gaps inner 5
+#
+# Window border
+#
+default_border pixel 3
+#
+# Opacity
+for_window [app_id=".*"] opacity set 0.95
+for_window [class=".*"] opacity set 0.95
+
+# Window color
+#
+# class                 border  backgr. text    indicator child_border
+client.focused          #88c0d0 #434c5e #eceff4 #8fbcbb   #88c0d0
+client.focused_inactive #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
+client.unfocused        #88c0d0 #2e3440 #d8dee9 #4c566a   #4c566a
+client.urgent           #ebcb8b #ebcb8b #2e3440 #8fbcbb   #ebcb8b
+#
+# Cursor
+#
+seat seat0 xcursor_theme Nordzy-cursors 35
+#
+#
+
+include ./inout
+include ./default-wallpaper
+include ./current-wallpaper
+include /etc/sway/config.d/*

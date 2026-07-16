@@ -1,0 +1,116 @@
+[global]
+    ### Display ###
+
+    # Monitor su cui mostrare le notifiche
+    monitor = 0
+
+    # Segui il focus (mouse, keyboard o none)
+    follow = mouse
+
+    ### Nuova Geometria (Sintassi Moderna) ###
+    width = 350
+    height = (0, 375)
+    offset = (20, 45)
+    origin = top-right
+    # Mostra quante notifiche sono nascoste
+    indicate_hidden = yes
+
+    # Ridimensiona la finestra se il messaggio è piccolo
+    shrink = false
+
+    # Trasparenza (0 = opaco, 100 = trasparente)
+    transparency = 0
+
+    # Spessore del separatore tra notifiche
+    separator_height = 2
+
+    # Padding interno della notifica
+    padding = 10
+    horizontal_padding = 10
+
+    # Bordo della finestra
+    frame_width = 2
+    frame_color = "#4C566A"
+
+    # Colore del separatore
+    separator_color = frame
+
+    # Ordina i messaggi per urgenza
+    sort = yes
+
+    # Soglia di inattività (0 per disabilitare)
+    idle_threshold = 20
+
+    ### Text ###
+
+    font = JetBrains Mono 10
+    line_height = 5
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    show_age_threshold = 60
+    word_wrap = yes
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    ### Icons ###
+
+    icon_position = right
+    max_icon_size = 64
+
+    ### History ###
+
+    sticky_history = yes
+    history_length = 20
+
+    ### Misc/Advanced ###
+
+    dmenu = /usr/bin/rofi -p dunst:
+    browser = /home/loki/apps/firefox/firefox -new-tab
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    force_xinerama = false
+
+    ### Scorciatoie (Spostate in [global] come richiesto dalle nuove versioni) ###
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    background = "#3b4252"
+    foreground = "#eceff4"
+    frame_color = "#4c566a"
+    timeout = 10
+
+[urgency_normal]
+    background = "#3b4252"
+    foreground = "#eceff4"
+    frame_color = "#4c566a"
+    timeout = 10
+
+[urgency_critical]
+    background = "#3b4252"
+    foreground = "#eceff4"
+    frame_color = "#bf616a"
+    timeout = 0
+
+### REGOLE (Vanno sempre in fondo al file!) ###
+
+[brightness]
+    summary = "󰃞 Light"
+    set_stack_tag = "brightness"
+
+[music]
+    summary = "*Now Playing*"
+    set_stack_tag = "music"
+
+[DND]
+    summary = "*Do Not Disturb*"
+    set_stack_tag = "dnd"
