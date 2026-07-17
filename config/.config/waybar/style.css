@@ -71,7 +71,6 @@ mpris.empty {
 #privacy,
 #clickable,
 #custom-update,
-#mpris,
 #tray,
 #memory,
 #backlight,
@@ -138,9 +137,9 @@ mpris.empty {
 }
 
 tooltip {
-  border-radius: 5px;
+  border-radius: 10px;
+  color: @nord5;
   background: @nord1;
-  border: 2px solid alpha(@nord8, .5);
 }
 
 

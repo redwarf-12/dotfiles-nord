@@ -32,12 +32,14 @@
     },
     "cpu": {
         "interval": 2,
-        "format": " {usage}%"
+        "format": " {usage}%",
+        "on-click": "kitty --class kitty-floating -e htop "
     },
     "custom/gpu": {
         "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent",
         "interval": 2,
         "format": "󰢮 {}%",
+        "on-click": "lact",
         "tooltip": false
     },
     "group/temps": {
@@ -134,7 +136,7 @@
         "format": "{icon} {volume}%",
         "on-click": "pavucontrol",
         "on-click-right": "pamixer -t",
-        "tooltip-format": "Playing at {volume}%",
+        "tooltip-format": " {desc}\n󰍬 {source_desc}",
         "scroll-step": 5,
         "format-muted": "",
         "format-icons": {
@@ -155,6 +157,7 @@
     "memory": {
         "format": " {used:0.1f}GB",
         "interval": 2,
+        "on-click": "kitty --class kitty-floating -e htop ",
         "tooltip-format": "{used:0.1f}GiB / {total:0.1f}GiB used ({percentage}%)"
     },
     "mpris": {
@@ -174,15 +177,15 @@
         "interval": 30,
         "format": "󰋊 {percentage_used}%",
         "path": "/",
-        "on-click": "kitty -e ncdu ~/",
+        "on-click": "kitty --class kitty-floating -e ncdu ~/",
         "tooltip-format": "{used} / {total} used"
     },
     "custom/update": {
-        "format": " {}",
+        "format": "󰮯 {}",
         "exec": "checkupdates | wc -l | awk '$1>0'",
-        "on-click": "kitty -e yay -Syu",
-        "tooltip-format": false,
-        "interval": 3600,
+        "on-click": "kitty --class kitty-updates -e sh -c 'fastfetch; yay -Syu; flatpak update; echo \"Press any key to exit...\"; read'",
+        "tooltip": false,
+        "interval": 60,
         "hide-empty-text": true
     },
     "idle_inhibitor": {

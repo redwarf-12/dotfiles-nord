@@ -2,7 +2,7 @@
 /* Author: Newman Sanchez (https://github.com/newmanls) */
 
 * {
-    font:   "JetBrainMono Nerd";
+    font:   "JetBrainMono Nerd 12";
 
     background-color:   transparent;
     text-color:         @fg0;
