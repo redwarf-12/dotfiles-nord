@@ -23,6 +23,7 @@ exec swayidle -w \
     resume 'swaymsg "output * power on"' \
     before-sleep 'playerctl pause; swaylock -f -c 000000'
 
+
 ### Key bindings
 #
 # Basics:
@@ -151,7 +152,10 @@ bindsym $mod+v exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode
 bindsym Print exec sh -c 'grim -g "$(slurp)" - | wl-copy'
 bindsym $mod+Print exec grim -g "$(slurp)"
 #
+# Wallpaper selector
+bindsym $mod+Shift+w exec WP=$(zenity --file-selection --filename="$HOME/dotfiles-nord/wallpapers/") && printf "%s" "$WP" > "$HOME/dotfiles-nord/config/.config/sway/current-wallpaper" && awww img "$WP"
 #
+
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
@@ -195,6 +199,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 for_window [app_id="nm-connection-editor"] floating enable
 for_window [app_id="blueman-manager"] floating enable, resize set width 800 px height 600 px
+for_window [app_id="xdg-desktop-portal-gtk"] floating enable
 # use "swaymsg -t get_tree" to get app_id
 #
 ### Graphics
@@ -226,6 +231,7 @@ seat seat0 xcursor_theme Nordzy-cursors 35
 #
 
 include ./inout
-include ./default-wallpaper
-include ./current-wallpaper
+### Wallpaper inizialization
+exec_always awww img "$(cat "$HOME/dotfiles-nord/config/.config/sway/current-wallpaper")"
+#
 include /etc/sway/config.d/*

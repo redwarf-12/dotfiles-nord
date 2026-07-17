@@ -60,6 +60,7 @@ xdg-desktop-portal-wlr
 xorg-xwayland
 yay-bin
 yay-bin-debug
+zenity
 zip
 zsh-completions
 zsh-syntax-highlighting
