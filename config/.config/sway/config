@@ -153,7 +153,7 @@ bindsym Print exec sh -c 'grim -g "$(slurp)" - | wl-copy'
 bindsym $mod+Print exec grim -g "$(slurp)"
 #
 # Wallpaper selector
-bindsym $mod+Shift+w exec WP=$(zenity --file-selection --filename="$HOME/dotfiles-nord/wallpapers/") && printf "%s" "$WP" > "$HOME/dotfiles-nord/config/.config/sway/current-wallpaper" && awww img "$WP"
+bindsym $mod+Shift+w exec WP=$(zenity --file-selection --filename="$HOME/dotfiles-nord/wallpapers/") && printf "%s" "$WP" > "$HOME/.config/sway/current-wallpaper" && awww img "$WP" -t wave --transition-fps 60 --transition-angle 15
 #
 
 # Status Bar:
