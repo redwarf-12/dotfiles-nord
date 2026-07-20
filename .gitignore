@@ -4,8 +4,5 @@ config/.config/sway/inout
 # Current wallpaper
 config/.config/sway/current-wallpaper
 
-# Current rofi theme
-config/.config/rofi/current-theme.rasi
-
 # Current fastfetch icon
 config/.config/fastfetch/current-icon

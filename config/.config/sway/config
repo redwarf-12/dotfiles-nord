@@ -235,6 +235,7 @@ seat seat0 xcursor_theme Nordzy-cursors 35
 
 include ./inout
 ### Wallpaper inizialization
-exec_always awww img "$(cat "$HOME/.config/sway/current-wallpaper")"
+exec_always awww img "$(cat $HOME/.config/sway/current-wallpaper)"
+exec_always swaymsg -m -t subscribe '["output"]' | while read -r event; do awww img "$(cat $HOME/.config/sway/current-wallpaper)"; done
 #
 include /etc/sway/config.d/*

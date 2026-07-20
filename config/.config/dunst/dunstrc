@@ -1,116 +1,113 @@
 [global]
-    ### Display ###
 
-    # Monitor su cui mostrare le notifiche
+### General ##
+
     monitor = 0
-
-    # Segui il focus (mouse, keyboard o none)
-    follow = mouse
-
-    ### Nuova Geometria (Sintassi Moderna) ###
-    width = 350
-    height = (0, 375)
-    offset = (20, 45)
+    follow = keyboard
+    width = 450
+    height = (0, 300)
     origin = top-right
-    # Mostra quante notifiche sono nascoste
+    offset = (20, 20)
+    scale = 0
+    notification_limit = 20
+
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 0
+    progress_bar_corners = all
+
+### Look ###
+
+    icon_corner_radius = 0
+    icon_corners = all
     indicate_hidden = yes
-
-    # Ridimensiona la finestra se il messaggio è piccolo
-    shrink = false
-
-    # Trasparenza (0 = opaco, 100 = trasparente)
     transparency = 0
 
-    # Spessore del separatore tra notifiche
-    separator_height = 2
-
-    # Padding interno della notifica
-    padding = 10
+    padding = 15
+    gap_size = 5
     horizontal_padding = 10
+    text_icon_padding = 15
 
-    # Bordo della finestra
+    separator_height = 5
     frame_width = 2
-    frame_color = "#4C566A"
+    background = "#3b4252e6"
+    foreground = "#e5e9f0"
+    frame_color = "#88c0d0"
 
-    # Colore del separatore
     separator_color = frame
-
-    # Ordina i messaggi per urgenza
     sort = yes
+    # idle_threshold = 120
 
-    # Soglia di inattività (0 per disabilitare)
-    idle_threshold = 20
+### Text  ###
 
-    ### Text ###
-
-    font = JetBrains Mono 10
-    line_height = 5
+    font = Adwaita Sans 12
+    line_height = 2
     markup = full
     format = "<b>%s</b>\n%b"
     alignment = left
+    vertical_alignment = top
     show_age_threshold = 60
-    word_wrap = yes
+    ellipsize = middle
+
     ignore_newline = no
-    stack_duplicates = true
+    stack_duplicates = false
     hide_duplicate_count = false
-    show_indicators = yes
+    show_indicators = no
+    enable_posix_regex = false
 
-    ### Icons ###
+### Icons ###
 
-    icon_position = right
+    enable_recursive_icon_lookup = false
+    icon_theme = Papirus
+    icon_position = left
+    min_icon_size = 42
     max_icon_size = 64
+    icon_path = /usr/share/icons/Papirus/48x48/apps/:/usr/share/icons/Papirus/48x48/status/
 
-    ### History ###
+### History ###
 
     sticky_history = yes
     history_length = 20
 
-    ### Misc/Advanced ###
+### Misc/Advanced ###
 
-    dmenu = /usr/bin/rofi -p dunst:
-    browser = /home/loki/apps/firefox/firefox -new-tab
+    dmenu = rofi -dmenu -p dunst
+    browser = /usr/bin/xdg-open
     always_run_script = true
     title = Dunst
     class = Dunst
+    corner_radius = 0
+    corners = all
+    ignore_dbusclose = false
+
+### Wayland ###
+
+    layer = top
+    force_xwayland = false
+
+### Legacy
+
     force_xinerama = false
 
-    ### Scorciatoie (Spostate in [global] come richiesto dalle nuove versioni) ###
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
+### Mouse
 
-[experimental]
-    per_monitor_dpi = false
+    mouse_left_click = do_action
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
 
 [urgency_low]
-    background = "#3b4252"
-    foreground = "#eceff4"
-    frame_color = "#4c566a"
-    timeout = 10
+    timeout = 6
+    default_icon = preferences-desktop-notification
 
 [urgency_normal]
-    background = "#3b4252"
-    foreground = "#eceff4"
-    frame_color = "#4c566a"
-    timeout = 10
+    timeout = 6
+    override_pause_level = 30
+    default_icon = preferences-desktop-notification
 
 [urgency_critical]
-    background = "#3b4252"
-    foreground = "#eceff4"
-    frame_color = "#bf616a"
-    timeout = 0
-
-### REGOLE (Vanno sempre in fondo al file!) ###
-
-[brightness]
-    summary = "󰃞 Light"
-    set_stack_tag = "brightness"
-
-[music]
-    summary = "*Now Playing*"
-    set_stack_tag = "music"
-
-[DND]
-    summary = "*Do Not Disturb*"
-    set_stack_tag = "dnd"
+    timeout = 6
+    override_pause_level = 60
+    default_icon = gnome-warning

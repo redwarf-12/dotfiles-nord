@@ -33,7 +33,7 @@
     "cpu": {
         "interval": 2,
         "format": " {usage}%",
-        "on-click": "kitty --class kitty-floating -e htop "
+        "on-click": "kitty --class kitty-floating -e btop"
     },
     "custom/gpu": {
         "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent",
@@ -157,7 +157,7 @@
     "memory": {
         "format": " {used:0.1f}GB",
         "interval": 2,
-        "on-click": "kitty --class kitty-floating -e htop ",
+        "on-click": "kitty --class kitty-floating -e btop ",
         "tooltip-format": "{used:0.1f}GiB / {total:0.1f}GiB used ({percentage}%)"
     },
     "mpris": {
