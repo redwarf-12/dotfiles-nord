@@ -13,17 +13,6 @@ set $term kitty
 # Your preferred application launcher
 set $menu rofi
 
-### Idle settings
-#
-# Numbers are in second
-#
-exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
-    timeout 360 'swaymsg "output * power off"' \
-    resume 'swaymsg "output * power on"' \
-    before-sleep 'playerctl pause; swaylock -f -c 000000'
-
-
 ### Key bindings
 #
 # Basics:
@@ -170,10 +159,10 @@ bar {
 exec swayosd-server
 
 # Wallpaper manager daemon
-exec_always awww-daemon
+exec awww-daemon
 
 # Notification manager
-exec_always dunst
+exec dunst
 
 # Clipboard history (text + images)
 exec cliphist wipe
@@ -234,8 +223,8 @@ seat seat0 xcursor_theme Nordzy-cursors 35
 #
 
 include ./inout
+#
 ### Wallpaper inizialization
-exec_always awww img "$(cat $HOME/.config/sway/current-wallpaper)"
-exec_always swaymsg -m -t subscribe '["output"]' | while read -r event; do awww img "$(cat $HOME/.config/sway/current-wallpaper)"; done
+exec_always awww img --transition-type none "$(cat $HOME/.config/sway/current-wallpaper)"
 #
 include /etc/sway/config.d/*
