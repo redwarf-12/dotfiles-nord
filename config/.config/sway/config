@@ -125,9 +125,9 @@ bindsym XF86AudioMicMute exec swayosd-client --input-volume mute-toggle
 bindsym --release Caps_Lock exec swayosd-client --caps-lock
 #
 # Brightness raise (optionally with --device, can be device name or wildcard)
-bindsym XF86MonBrightnessUp exec swayosd-client --brightness raise --device intel_backlight
+bindsym XF86MonBrightnessUp exec swayosd-client --brightness +5 
 # Brightness lower (optionally with --device, can be device name or wildcard)
-bindsym XF86MonBrightnessDown exec swayosd-client --brightness lower --device intel_backlight
+bindsym XF86MonBrightnessDown exec swayosd-client --brightness -5
 #
 # Play/Pause current player
 bindsym XF86AudioPlay exec swayosd-client --playerctl play-pause
