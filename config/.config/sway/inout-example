@@ -1,4 +1,3 @@
-
 ### Output configuration
 #
 # output DP-3 mode 2560x1440@200Hz pos 0 0 adaptive_sync on
@@ -11,12 +10,25 @@
 # workspace 1 output DP-3
 # workspace 10 output HDMI-A-1
 #
+# Secondary display off at start
+# 
+# exec_always swaymsg output HDMI-A-1 power off
+#
 # Second monitor toggle:
 #
-# bindsym $mod+Shift+m output HDMI-A-1 toggle
-
+# bindsym $mod+Shift+m exec swaymsg output HDMI-A-1 power toggle && sleep 0.3 && awww img --transition-type none "$(cat $HOME/.config/sway/current-wallpaper)"
 ### Wallpaper management
 #
+
+### Idle settings
+#
+# Numbers are in second
+#
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 360 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on" && sleep 0.3 && awww img --transition-type none "$(cat $HOME/.config/sway/current-wallpaper)"' \
+    before-sleep 'playerctl pause; swaylock -f -c 000000'
 
 ### Input configuration
 #
@@ -29,10 +41,10 @@
 #        middle_emulation enabled
 #    }
 #
-# input type:keyboard {
-#     xkb_layout "it,us"
-#     xkb_options "grp:win_space_toggle"
-# }
+input type:keyboard {
+    xkb_layout "it,us"
+    xkb_options "grp:win_space_toggle"
+}
 #
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
