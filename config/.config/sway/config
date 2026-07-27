@@ -41,7 +41,7 @@ bindsym $mod+l exec swaylock -c 000000
 floating_modifier $mod normal
 
 # Reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+s reload
 
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaymsg exit
@@ -137,9 +137,24 @@ bindsym XF86AudioNext exec swayosd-client --playerctl next
 # Clipboard history
 bindsym $mod+v exec cliphist list | rofi -dmenu -p "Clipboard" | cliphist decode | wl-copy
 #
-# Copy screenshot
-bindsym Print exec sh -c 'grim -g "$(slurp)" - | wl-copy'
-bindsym $mod+Print exec grim -g "$(slurp)"
+# Screenshot
+#
+bindsym Print exec sh -c 'grim -g "$(slurp)" - | wl-copy && notify-send -i camera-photo "Screenshot" "Copied to clipboard"'
+#
+bindsym $mod+Print exec sh -c 'FILE="$HOME/Pictures/screenshots/$(date +"%Y-%m-%d_%H-%M-%S").png" && \
+    grim -g "$(slurp)" "$FILE" && \
+    notify-send -i "$FILE" "Screenshot" "Saved in ~/Pictures/screenshots"'
+#
+# Screen recording
+#
+bindsym $mod+Shift+c exec sh -c 'killall -SIGUSR1 gpu-screen-recorder &&\
+    notify-send -i media-tape "Clip" "Saved in ~/Videos/Clips"'
+
+#
+bindsym $mod+Shift+r exec sh -c 'if [ $(find ~/Videos/recordings -type f -mmin -0.1 | wc -l) -gt 0 ];\
+    then pkill -SIGRTMIN -f "^gpu-screen-recorder" && notify-send -i camera-video "Recording" "Saved in ~/Videos/recordings";\
+    else pkill -SIGRTMIN -f "^gpu-screen-recorder"; fi;\
+    [ -f /tmp/waybar_recorder ] && rm /tmp/waybar_recorder || touch /tmp/waybar_recorder; pkill -RTMIN+1 waybar'
 #
 # Wallpaper selector
 bindsym $mod+Shift+w exec WP=$(zenity --file-selection --filename="$HOME/dotfiles-nord/wallpapers/") && printf "%s" "$WP" > "$HOME/.config/sway/current-wallpaper" && awww img "$WP" -t wave --transition-fps 60 --transition-angle 15
@@ -181,6 +196,9 @@ exec /usr/lib/pam_kwallet_init
 
 # Polkit agent
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Start replay buffer
+exec gpu-screen-recorder -w screen -f 60 -a "default_output|default_input" -r 60 -c mp4 -o ~/Videos/clips -ro ~/Videos/recordings
 
 ### Floating windows
 #

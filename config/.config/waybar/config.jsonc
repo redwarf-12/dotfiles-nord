@@ -17,6 +17,7 @@
     "modules-center": [ "sway/workspaces"],
     "modules-right": [
         "mpris",
+        "custom/recorder",
         "group/clickable",
         "backlight",
         "privacy",
@@ -133,7 +134,7 @@
         "on-click": ""
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{icon}  {volume}%",
         "on-click": "pavucontrol",
         "on-click-right": "pamixer -t",
         "tooltip-format": " {desc}\n󰍬 {source_desc}",
@@ -249,9 +250,19 @@
                 "name": "cava"
             },
             {
-                "type": "screenshare",
-                "name": "obs"
+                "type": "audio-in",
+                "name": "gsr-default_output"
+            },
+            {
+                "type": "audio-in",
+                "name": "gsr-default_input"
             }
         ]
-    }
-}
+    },
+    "custom/recorder": {
+        "exec-if": "test -f /tmp/waybar_recorder",
+        "return-type": "json",
+        "interval": "once",
+        "signal": 1,
+        "exec": "echo \"{\\\"text\\\": \\\"🔴 REC\\\"}\""
+}}
