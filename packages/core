@@ -12,12 +12,11 @@ dunst
 exfatprogs
 fastfetch
 flatpak
+gnome-keyring
 gparted
 gpu-screen-recorder
 imagemagick
 kitty
-kwallet-pam
-kwalletmanager
 loupe
 lshw
 man-db
@@ -29,7 +28,7 @@ network-manager-applet
 nordic-theme
 nordzy-cursors
 noto-fonts-emoji
-nwg-look
+okular
 pacman-contrib
 pamixer
 papirus-folders-nordic

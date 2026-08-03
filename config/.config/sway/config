@@ -191,11 +191,11 @@ exec --no-startup-id blueman-applet
 # Better windows tiling
 exec autotiling
     
-# Kwallet opening
-exec /usr/lib/pam_kwallet_init
-
 # Polkit agent
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Udiskie (automatic mount)
+exec udiskie --tray --notify
 
 # Start replay buffer
 exec gpu-screen-recorder -w screen -f 60 -a "default_output|default_input" -r 60 -c mp4 -o ~/Videos/clips -ro ~/Videos/recordings
@@ -209,6 +209,7 @@ for_window [app_id="blueman-manager"] floating enable, resize set width 800 px h
 for_window [app_id="xdg-desktop-portal-gtk"] floating enable
 for_window [app_id="kitty-floating"] floating enable, resize set width 800 px height 600 px
 for_window [app_id="kitty-updates"] floating enable, resize set width 1200 px height 600 px
+for_window [class="steam_app_.*"] inhibit_idle fullscreen
 
 # use "swaymsg -t get_tree" to get app_id
 #
