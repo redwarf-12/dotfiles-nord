@@ -33,6 +33,9 @@ bindsym Control+Mod1+s exec systemctl suspend
 bindsym Control+Mod1+h exec systemctl hibernate
 bindsym $mod+l exec swaylock -c 000000
 
+# Power off focused monitor
+bindsym $mod+Shift+m exec swaymsg output - power off
+
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
 # Despite the name, also works for non-floating windows.
