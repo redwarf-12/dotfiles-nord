@@ -51,7 +51,7 @@
         ]
     },
     "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
         "interval": 2,
         "tooltip-format": "CPU",
         "critical-threshold": 80,
@@ -59,7 +59,7 @@
         "format-icons": ["󱃃", "󰔏", "󱃂"]
     },
     "temperature#gpu": {
-        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "interval": 2,
         "tooltip-format": "GPU",
         "critical-threshold": 80,
@@ -107,6 +107,7 @@
         "spacing": 1
     },
     "battery": {
+        "bat": "BAT0",
         "format": "{capacity}% {icon}",
         "format-discharging": "{capacity}% {icon}",
         "format-charging": "{capacity}% {icon}",
