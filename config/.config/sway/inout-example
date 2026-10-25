@@ -14,11 +14,7 @@
 # 
 # exec_always swaymsg output HDMI-A-1 power off
 #
-# Second monitor toggle:
-#
-# bindsym $mod+Shift+m exec swaymsg output HDMI-A-1 power toggle && sleep 0.3 && awww img --transition-type none "$(cat $HOME/.config/sway/current-wallpaper)"
-### Wallpaper management
-#
+
 
 ### Idle settings
 #
@@ -29,6 +25,16 @@ exec swayidle -w \
     timeout 360 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on" && sleep 0.3 && awww img --transition-type none "$(cat $HOME/.config/sway/current-wallpaper)"' \
     before-sleep 'playerctl pause; swaylock -f -c 000000'
+# In order to add dimming for a desktop add those lines on top:
+#     timeout 270 'ddcutil --display 2 setvcp 10 10; ddcutil --display 1 setvcp 10 5'\
+#     resume 'ddcutil --display 2 setvcp 10 40; ddcutil --display 1 setvcp 10 20' \
+# BE SURE TO HAVE DDCUTIL INSTALLED
+# Also keep in mind that probably works only with a connected monitor
+#
+# In order to add dimming for a laptop add those lines on top:
+#   timeout 270 'brightnessctl set 10%'\
+#   resume 'brightnessctl set 50%'\
+#
 
 ### Input configuration
 #
