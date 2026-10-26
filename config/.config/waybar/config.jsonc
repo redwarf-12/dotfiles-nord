@@ -111,14 +111,14 @@
         "format": "{capacity}% {icon}",
         "format-discharging": "{capacity}% {icon}",
         "format-charging": "{capacity}% {icon}",
-        "format-plugged": "",
+        "format-plugged": "Full ",
         "format-icons": {
             "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
             "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
         },
         "format-full": "󰂅",
-        "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-        "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+        "tooltip-format-discharging": "{power:>1.0f}W↓\n{time} ",
+        "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%\n{time}",
         "interval": 5,
         "states": {
             "warning": 20,
