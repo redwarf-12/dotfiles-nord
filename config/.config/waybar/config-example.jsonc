@@ -1,0 +1,52 @@
+// included by config (base)
+
+{
+    "modules-left": [
+        "battery",
+        "cpu",
+        "custom/gpu",
+        "group/temps",
+        "memory",
+        "disk"
+    ],
+    "modules-center": [ "sway/workspaces"],
+    "modules-right": [
+        "mpris",
+        "custom/recorder",
+        "group/clickable",
+        "backlight",
+        "privacy",
+        "pulseaudio",
+        "tray",
+        "custom/update",
+        "clock"
+    ],
+     "group/temps": {
+        "orientation": "inherit",
+        "modules": [
+            "temperature",
+            "temperature#gpu"
+        ]
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "interval": 2,
+        "tooltip-format": "CPU",
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["󱃃", "󰔏", "󱃂"]
+    },
+    "temperature#gpu": {
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "interval": 2,
+        "tooltip-format": "GPU",
+        "critical-threshold": 80,
+        "format": " {icon} {temperatureC}°C",
+        "format-icons": ["󱃃", "󰔏", "󱃂"]
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"]
+    }
+
+}

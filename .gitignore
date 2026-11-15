@@ -6,3 +6,6 @@ config/.config/sway/current-wallpaper
 
 # Current fastfetch icon
 config/.config/fastfetch/current-icon
+
+# Specific waybar config (desktop vs laptop)
+config/.config/waybar/specific.jsonc
