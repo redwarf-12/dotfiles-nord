@@ -53,6 +53,7 @@ bindsym $mod+Shift+e exec swaymsg exit
 #
 bindsym $mod+b exec brave
 bindsym $mod+e exec nautilus --new-window
+bindsym $mod+s exec steam
 #
 # Moving around:
 #
